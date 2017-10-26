@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-
+    @include('expense.create')
     <h3 class="text-center">Current Expenses</h3>
     <table class="table table-hover">
         <tr>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ExpenseManagement\ExpenseDAO;
+use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
 {
@@ -24,6 +25,11 @@ class ExpenseController extends Controller
     // create a single expense
     public function create(Request $request)
     {
+        // Validate the input
+        $this->validate($request, [
+            'transaction_date' => 'required|date',
+            'amount' => 'required|numeric', ]);
+
         // TODO: parse request and create an expense.
         return view('expense.create');
     }
