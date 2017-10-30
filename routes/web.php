@@ -11,13 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ExpenseController@index');
 
-Route::get('/expense', 'ExpenseController@index');
-
-Route::post('/expense', 'ExpenseController@create');
+Route::post('/', 'ExpenseController@create');
 
 Route::get('/env', function () {
     dump(config('app.name'));
