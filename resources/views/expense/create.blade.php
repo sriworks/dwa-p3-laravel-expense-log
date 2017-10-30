@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-6 center col-md-offset-3">
-        
+        <h3>Log your Expense</h3>
         <form method="POST">
             {{ csrf_field() }}
             
@@ -36,10 +36,13 @@
             
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" id="exclude_from_budget" name="exclude_from_budget" value="{{ old('exclude_from_budget') }}"> Exclude from Budget?
+                    <input type="checkbox" id="exclude_from_budget" name="exclude_from_budget" value="Yes"
+                        @if(old('exclude_from_budget'))
+                            checked
+                        @endif
+                    > Exclude from Budget?
                 </label>
                 @include('shared.error-field', ['fieldName' => 'exclude_from_budget'])
-        
             </div>    
             
         

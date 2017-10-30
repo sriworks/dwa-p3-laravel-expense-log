@@ -14,9 +14,12 @@
 </head>
 <body>
     
-    <h2 class="text-center">@yield('title', 'Expense Logger')</h2>
-    
     <div class="container">
+        <div class="page-header">
+            <h1>Personal Expense Logger</h1> 
+            <p>Track and log your expense!</p> 
+        </div>
+
         @yield('content')
     </div>
 

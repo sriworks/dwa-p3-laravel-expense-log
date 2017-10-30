@@ -14,7 +14,11 @@ class ExpenseController extends Controller
         $this->expenseDAO = new ExpenseDAO(database_path('expenses.json'));
     }
 
-    // Query List of expenses
+    /**
+     * Public Controller Method to handle index page.
+     *
+     * @param request - Http Request
+     */
     public function index()
     {
         return view('expense.index')->with([
@@ -22,7 +26,11 @@ class ExpenseController extends Controller
         ]);
     }
 
-    // create a single expense
+    /**
+     * Public Controller Method to handle create expense request.
+     *
+     * @param request - Http Request
+     */
     public function create(Request $request)
     {
         // Validate the input
@@ -30,7 +38,19 @@ class ExpenseController extends Controller
             'transaction_date' => 'required|date',
             'amount' => 'required|numeric', ]);
 
-        // TODO: parse request and create an expense.
-        return view('expense.create');
+        // Create expense
+        $expense = array(
+            'category' => $request->input('category', ''),
+            'memo' => $request->input('memo', ''),
+            'options' => array('exclude_from_budget' => $request->input('exclude_from_budget', 'No')),
+            'amount' => $request->input('amount', ''),
+            'transaction_date' => $request->input('transaction_date', ''), );
+
+        $this->expenseDAO->createNewExpense($expense);
+
+        // Redirect to index page.
+        return redirect('/expense')->with([
+                'message' => array('message_text' => 'Expense Created Successfully', 'severity' => 'success'),
+            ]);
     }
 }
