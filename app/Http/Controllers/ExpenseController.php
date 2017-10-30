@@ -49,7 +49,7 @@ class ExpenseController extends Controller
         $this->expenseDAO->createNewExpense($expense);
 
         // Redirect to index page.
-        return redirect($request->url())->with([
+        return redirect('./')->with([
                 'message' => array('message_text' => 'Expense Created Successfully', 'severity' => 'success'),
             ]);
     }
